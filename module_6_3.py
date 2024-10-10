@@ -14,11 +14,7 @@ class Eagle:
         self.y_distance += dy
 
 
-class Pegasus(Horse, Eagle):
-    def __new__(cls, *args, **kwargs):
-        instance = super().__new__(cls, *args, **kwargs)
-        instance.sound = Eagle.sound
-        return instance
+class Pegasus(Eagle, Horse):
     def move(self, dx: int, dy: int):
         super().run(dx)
         super().fly(dy)
