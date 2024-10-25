@@ -1,20 +1,20 @@
+class IncorrectVinNumber(Exception):
+    message: str
+    def __init__(self, *args):
+        if len(args) != 0:
+            self.message = args[0]
+        super().__init__(*args)
+
+
+class IncorrectCarNumbers(Exception):
+    message: str
+    def __init__(self, *args):
+        if len(args) != 0:
+            self.message = args[0]
+        super().__init__(*args)
+
+
 class Car:
-    class IncorrectVinNumber(Exception):
-        message: str
-
-        def __init__(self, *args):
-            if len(args) != 0:
-                self.message = args[0]
-            super().__init__(*args)
-
-    class IncorrectCarNumbers(Exception):
-        message: str
-
-        def __init__(self, *args):
-            if len(args) != 0:
-                self.message = args[0]
-            super().__init__(*args)
-
     model: str
     __vin: int
     __numbers: str
@@ -28,42 +28,42 @@ class Car:
 
     def __is_valid_vin(self, vin_number: int) -> bool:
         if not isinstance(vin_number, int):
-            raise self.IncorrectVinNumber('Некорректный тип vin номер')
+            raise IncorrectVinNumber('Некорректный тип vin номер')
         if not (1000000 <= vin_number <= 9999999):
-            raise self.IncorrectVinNumber('Неверный диапазон для vin номера')
+            raise IncorrectVinNumber('Неверный диапазон для vin номера')
         return True
 
     def __is_valid_numbers(self, numbers: str) -> bool:
         if not isinstance(numbers, str):
-            raise self.IncorrectCarNumbers('Некорректный тип данных для номеров')
+            raise IncorrectCarNumbers('Некорректный тип данных для номеров')
         if not len(numbers) == 6:
-            raise self.IncorrectCarNumbers ('Неверная длина номера')
+            raise IncorrectCarNumbers ('Неверная длина номера')
         return True
 
 
 try:
     first = Car('Model1', 1000000, 'f123dj')
-except Car.IncorrectVinNumber as exc:
+except IncorrectVinNumber as exc:
     print(exc.message)
-except Car.IncorrectCarNumbers as exc:
+except IncorrectCarNumbers as exc:
     print(exc.message)
 else:
     print(f'{first.model} успешно создан')
 
 try:
     second = Car('Model2', 300, 'т001тр')
-except Car.IncorrectVinNumber as exc:
+except IncorrectVinNumber as exc:
     print(exc.message)
-except Car.IncorrectCarNumbers as exc:
+except IncorrectCarNumbers as exc:
     print(exc.message)
 else:
     print(f'{second.model} успешно создан')
 
 try:
     third = Car('Model3', 2020202, 'нет номера')
-except Car.IncorrectVinNumber as exc:
+except IncorrectVinNumber as exc:
     print(exc.message)
-except Car.IncorrectCarNumbers as exc:
+except IncorrectCarNumbers as exc:
     print(exc.message)
 else:
     print(f'{third.model} успешно создан')
