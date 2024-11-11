@@ -4,7 +4,6 @@ def write_words(word_count, file_name):
     with open(file_name,'w') as f:
         for i in range(1,word_count+1):
             f.write(f"Какое-то слово №{i}")
-            time.sleep(0.1)
         print(f"Завершилась запись в файл {file_name}")
 
 l = [
