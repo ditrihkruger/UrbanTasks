@@ -4,23 +4,27 @@ import inspect
 
 class A:
     a: int
+    def __init__(self):
+        self.a = 10
     def b(self,c):
         pass
 def introspection_info(obj):
     d = {}
     d['type'] = type(obj).__name__
-    for member in inspect.getmembers(obj):
-        print(member)
-        print(inspect.ismethod(member[1]), member[1])
-    d['methods'] = []
     d['attributes'] = []
-    for attr in dir(obj):
-        attr_obj =  getattr(obj, attr)
-        if callable(attr_obj):
-            d['methods'].append(attr_obj)
+    d['methods'] = []
+    for i in inspect.getmembers(obj):
+        if inspect.ismethod(getattr(obj, i[0])):
+            d['methods'].append(i[0])
+        elif inspect.isbuiltin(getattr(obj, i[0])):
+            d['methods'].append(i[0])
+        elif inspect.isfunction(getattr(obj, i[0])):
+            d['methods'].append(i[0])
+        elif inspect.ismethodwrapper(getattr(obj, i[0])):
+            d['methods'].append(i[0])
         else:
-            d['attributes'].append(attr_obj)
-    d['module'] = inspect.getmodule(obj)
+            d['attributes'].append(i[0])
+    d['module'] = getattr(obj, '__module__')
     return d
 
-print(*introspection_info(A()), sep = '\n')
+print(introspection_info(A()), sep = '\n')
