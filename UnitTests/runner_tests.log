@@ -1,2 +1,17 @@
-WARNING: Неверный тип данных для объекта Runner
-WARNING: Неверная скорость для Runner
+WARNING:root:Неверный тип данных для объекта Runner
+Traceback (most recent call last):
+  File "C:\Users\ASUS TUF F15\PycharmProjects\Urban\UnitTests\runnertest.py", line 22, in test_run
+    runner = Runner("Vasya", "H")
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS TUF F15\PycharmProjects\Urban\UnitTests\rt_with_exceptions.py", line 8, in __init__
+    if speed > 0:
+       ^^^^^^^^^
+TypeError: '>' not supported between instances of 'str' and 'int'
+WARNING:root:Неверная скорость для Runner
+Traceback (most recent call last):
+  File "C:\Users\ASUS TUF F15\PycharmProjects\Urban\UnitTests\runnertest.py", line 11, in test_walk
+    runner = Runner("Vasya",-5)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ASUS TUF F15\PycharmProjects\Urban\UnitTests\rt_with_exceptions.py", line 11, in __init__
+    raise ValueError(f'Скорость не может быть отрицательной, сейчас {speed}')
+ValueError: Скорость не может быть отрицательной, сейчас -5

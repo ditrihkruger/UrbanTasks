@@ -12,9 +12,9 @@ class RunnerTest(TestCase):
             for i in range(10):
                 runner.walk()
             self.assertEqual(runner.distance, 50)
-            logging.info(f'"test_walk" выполнен успешно')
+            logging.info(f'"test_walk" выполнен успешно', exc_info=True)
         except Exception as e:
-            logging.warning("Неверная скорость для Runner")
+            logging.warning("Неверная скорость для Runner", exc_info=True)
 
     @skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_run(self):
@@ -25,7 +25,7 @@ class RunnerTest(TestCase):
             self.assertEqual(runner.distance, 100)
             logging.info(f'"test_walk" выполнен успешно')
         except Exception as e:
-            logging.warning("Неверный тип данных для объекта Runner")
+            logging.warning("Неверный тип данных для объекта Runner", exc_info=True)
 
 
     @skipIf(is_frozen,  'Тесты в этом кейсе заморожены')
